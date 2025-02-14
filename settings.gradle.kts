@@ -1,2 +1,1 @@
-rootProject.name = "evonyacore"
-
+rootProject.name = "EvonyaCore"

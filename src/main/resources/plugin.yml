@@ -1,0 +1,62 @@
+name: EvonyaCore
+version: ${pluginVersion}
+description: A Minecraft plugin dedicated to the Minecraft server known by the same name.
+author: kubbidev
+website: https://kubbidev.me
+main: me.kubbidev.evonyacore.EvonyaPlugin
+
+# Required dependencies for core functionality
+depend: [NexusPowered, ProtocolLib]
+
+# Mark the plugin as 1.13 compatible to avoid CB having to perform quite as much unnecessary
+# remapping when the plugin is loaded.
+api-version: 1.13
+
+commands:
+  broadcast:
+    description: send broadcast to the server
+    aliases:
+      - bc
+      - broad
+      - cast
+  heal:
+    description: heal players
+  help:
+    description: help commmand list
+  join:
+    description: join the game queue
+  quit:
+    description: quit the game queue
+  rank:
+    description: change players rank
+  lag:
+    description: see server stats
+    aliases:
+      - server
+  msg:
+    description: send private message
+    aliases:
+      - tell
+      - me
+  r:
+    description: reply to last message
+  game:
+    description: control server games
+  bypass:
+    description: bypass server restrictions
+  fly:
+    description: allow you to fly
+  gamemode:
+    description: change your gamemode
+  speed:
+    description: change your speed
+  time:
+    description: change world time
+  stats:
+    description: see players stats
+  host:
+    description: change players hosts
+  pack:
+    description: change your textures pack
+  pwl:
+    description: change players pre-whitelist

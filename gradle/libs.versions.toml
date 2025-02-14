@@ -1,0 +1,5 @@
+[versions]
+shadow = "9.0.0-beta4"
+
+[plugins]
+shadow = { id = "com.gradleup.shadow", version.ref = "shadow" }
