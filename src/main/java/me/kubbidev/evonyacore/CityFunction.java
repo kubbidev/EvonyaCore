@@ -1,6 +1,6 @@
 package me.kubbidev.evonyacore;
 
-import me.kubbidev.evonyacore.players.EvonyaPlayer;
+import me.kubbidev.evonyacore.players.EPlayer;
 import me.kubbidev.evonyacore.players.Rank;
 import me.kubbidev.evonyacore.players.State;
 import me.kubbidev.evonyacore.utils.WorldManager;
@@ -20,7 +20,7 @@ public class CityFunction {
         return city;
     }
 
-    public void cityEnter(EvonyaPlayer player) {
+    public void cityEnter(EPlayer player) {
         if (player.getPlayerRank().isLowerThan(Rank.GUEST)) {
             player.sendMessage(EvonyaPlugin.PREFIX + "Vous &cn'avez pas&f la permission de &arejoindre&f ce monde.");
             player.closeInventory();

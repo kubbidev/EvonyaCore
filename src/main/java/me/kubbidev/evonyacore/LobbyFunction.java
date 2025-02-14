@@ -1,7 +1,7 @@
 package me.kubbidev.evonyacore;
 
 import me.kubbidev.evonyacore.events.PlayerDisconnectEvent;
-import me.kubbidev.evonyacore.players.EvonyaPlayer;
+import me.kubbidev.evonyacore.players.EPlayer;
 import me.kubbidev.evonyacore.players.PlayerManager;
 import me.kubbidev.evonyacore.players.Rank;
 import me.kubbidev.evonyacore.players.State;
@@ -29,7 +29,7 @@ public class LobbyFunction {
         return lobby;
     }
 
-    public void lobbyEnter(EvonyaPlayer player) {
+    public void lobbyEnter(EPlayer player) {
 
         if (player.hasGameInstance())
             Bukkit.getPluginManager().callEvent(new PlayerDisconnectEvent(player, player.getGameInstance()));
@@ -47,7 +47,7 @@ public class LobbyFunction {
             final String role = player.getPlayerRank().getScoreBoardPrefix();
             final String name = player.getUsername();
 
-            lobby.getPlayers().stream().map(PlayerManager::wrapEvonyaPlayer).forEach(evonyaPlayer -> evonyaPlayer.sendMessage(role + name + "&r&o vient de rejoindre!"));
+            lobby.getPlayers().stream().map(PlayerManager::wrapPlayer).forEach(evonyaPlayer -> evonyaPlayer.sendMessage(role + name + "&r&o vient de rejoindre!"));
         }
 
         giveLobbyItems(player);
@@ -58,7 +58,7 @@ public class LobbyFunction {
         }, 60L);
     }
 
-    private void welcomeMessage(EvonyaPlayer player) {
+    private void welcomeMessage(EPlayer player) {
         player.sendMessage(" ");
         player.sendMessage(" &f(&c!&f) Bienvenue sur &c&lEVONYA");
         player.sendMessage(" ");
@@ -72,12 +72,12 @@ public class LobbyFunction {
         player.sendMessage(" ");
     }
 
-    private void sendTitle(EvonyaPlayer player) {
+    private void sendTitle(EPlayer player) {
         player.resetTitle();
         player.sendTitle("&f&l»&c&l»&f&l» &c&lEVONYA &f&l«&c&l«&f&l«", "&f&k|&c&k|&f&k| &fBienvenue &f&k|&c&k|&f&k|");
     }
 
-    public void giveLobbyItems(EvonyaPlayer player) {
+    public void giveLobbyItems(EPlayer player) {
         player.getInventory().setItem(4, new Item(Material.COMPASS).setName("&8┃ &b&lNaviguation&f (Clic-Droit)").parseItem());
         player.updateInventory();
     }

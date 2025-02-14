@@ -4,7 +4,7 @@ import me.kubbidev.evonyacore.EvonyaPlugin;
 import me.kubbidev.evonyacore.game.core.GameInstance;
 import me.kubbidev.evonyacore.menu.AnvilMenu;
 import me.kubbidev.evonyacore.menu.PlayerMenuUtility;
-import me.kubbidev.evonyacore.players.EvonyaPlayer;
+import me.kubbidev.evonyacore.players.EPlayer;
 import me.kubbidev.evonyacore.players.PlayerManager;
 import me.kubbidev.evonyacore.utils.Item;
 import net.wesjd.anvilgui.AnvilGUI;
@@ -26,7 +26,7 @@ public class WhitelistAddingPanel extends AnvilMenu {
             }
 
             String text = stateSnapshot.getText();
-            EvonyaPlayer player = PlayerManager.wrapEvonyaPlayer(stateSnapshot.getPlayer());
+            EPlayer player = PlayerManager.wrapPlayer(stateSnapshot.getPlayer());
 
             final GameInstance gameInstance = player.getGameInstance();
             if (gameInstance.getWhitelist().contains(text)) {

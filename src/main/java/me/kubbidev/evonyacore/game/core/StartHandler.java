@@ -6,7 +6,7 @@ import me.kubbidev.evonyacore.game.core.inventory.CustomInventory;
 import me.kubbidev.evonyacore.utils.EvonyaSounds;
 import me.kubbidev.evonyacore.players.State;
 import me.kubbidev.evonyacore.players.Role;
-import me.kubbidev.evonyacore.players.EvonyaPlayer;
+import me.kubbidev.evonyacore.players.EPlayer;
 import me.kubbidev.evonyacore.utils.CustomSpawn;
 import org.apache.commons.lang.ArrayUtils;
 import org.bukkit.Bukkit;
@@ -55,7 +55,7 @@ public class StartHandler {
 
         Role[] role = gameInstance.getActiveRoles().toArray(new Role[0]);
 
-        for (EvonyaPlayer player : gameInstance.getPlayers()) {
+        for (EPlayer player : gameInstance.getPlayers()) {
             final Role picked = role[(new Random().nextInt(role.length))];
             final Tracker playerTracker = gameInstance.getTracker(player);
 
@@ -70,7 +70,7 @@ public class StartHandler {
     private void randomTeleport() {
         Spawn[] spawn = Spawn.values();
 
-        for (EvonyaPlayer player : gameInstance.getPlayers()) {
+        for (EPlayer player : gameInstance.getPlayers()) {
             final Spawn picked = spawn[((new Random().nextInt(spawn.length)))];
             final Location location = picked.getSpawn().getLocation(gameInstance.getWorld());
 

@@ -4,7 +4,7 @@ import me.kubbidev.evonyacore.EvonyaPlugin;
 import me.kubbidev.evonyacore.LobbyFunction;
 import me.kubbidev.evonyacore.events.PlayerConnectionEvent;
 import me.kubbidev.evonyacore.game.core.GameInstance;
-import me.kubbidev.evonyacore.players.EvonyaPlayer;
+import me.kubbidev.evonyacore.players.EPlayer;
 import me.kubbidev.evonyacore.scoreboard.ScoreBoardManager;
 import me.kubbidev.evonyacore.storage.EvonyaPlayerProvider;
 import me.kubbidev.evonyacore.storage.EvonyaStatisticProvider;
@@ -28,7 +28,7 @@ public class JoinListener implements Listener {
         event.setJoinMessage(null);
 
         final Player bukkitPlayer = event.getPlayer();
-        final EvonyaPlayer player = new EvonyaPlayerProvider(bukkitPlayer).loadAccount();
+        final EPlayer player = new EvonyaPlayerProvider(bukkitPlayer).loadAccount();
 
         new EvonyaStatisticProvider(player).loadStatistic();
 
@@ -39,7 +39,7 @@ public class JoinListener implements Listener {
     @EventHandler
     public void onGameConnect(PlayerConnectionEvent event) {
         final GameInstance gameInstance = event.getGameInstance();
-        final EvonyaPlayer player = event.getPlayer();
+        final EPlayer player = event.getPlayer();
 
         if (gameInstance.getPlayers().size() >= gameInstance.getSlots() && !player.isBypass() && !gameInstance.getCoHost().contains(player)) {
             player.sendMessage(EvonyaPlugin.PREFIX + "Impossible de se &aconnecter&f : la partie est &cpleine&f.");

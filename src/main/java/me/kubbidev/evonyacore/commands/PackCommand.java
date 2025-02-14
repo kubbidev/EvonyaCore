@@ -3,7 +3,7 @@ package me.kubbidev.evonyacore.commands;
 import me.kubbidev.evonyacore.EvonyaPlugin;
 import me.kubbidev.evonyacore.menu.PlayerMenuManager;
 import me.kubbidev.evonyacore.menu.panel.ResourcePackPanel;
-import me.kubbidev.evonyacore.players.EvonyaPlayer;
+import me.kubbidev.evonyacore.players.EPlayer;
 import me.kubbidev.evonyacore.players.PlayerManager;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -25,7 +25,7 @@ public class PackCommand implements CommandExecutor {
             EvonyaPlugin.LOGGER.warning("Only players can type this command!");
             return true;
         }
-        final EvonyaPlayer player = PlayerManager.wrapEvonyaPlayer((Player) sender);
+        final EPlayer player = PlayerManager.wrapPlayer((Player) sender);
         new ResourcePackPanel(PlayerMenuManager.getPlayerMenuUtility(player), plugin).open();
 
         return true;

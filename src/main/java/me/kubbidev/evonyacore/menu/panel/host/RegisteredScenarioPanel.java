@@ -7,7 +7,7 @@ import me.kubbidev.evonyacore.menu.MenuBorder;
 import me.kubbidev.evonyacore.menu.PaginatedMenu;
 import me.kubbidev.evonyacore.menu.PlayerMenuUtility;
 import me.kubbidev.evonyacore.menu.ScenarioMenu;
-import me.kubbidev.evonyacore.players.EvonyaPlayer;
+import me.kubbidev.evonyacore.players.EPlayer;
 import me.kubbidev.evonyacore.players.PlayerManager;
 import me.kubbidev.evonyacore.utils.Item;
 import me.kubbidev.nexuspowered.item.ItemStackBuilder;
@@ -124,7 +124,7 @@ public class RegisteredScenarioPanel extends PaginatedMenu {
 
     @Override
     public void handleMenu(InventoryClickEvent event) {
-        final EvonyaPlayer player = PlayerManager.wrapEvonyaPlayer((Player) event.getWhoClicked());
+        final EPlayer player = PlayerManager.wrapPlayer((Player) event.getWhoClicked());
         final ItemStack itemStack = event.getCurrentItem();
         final ClickType clickType = event.getClick();
         final String name = itemStack.getItemMeta().getDisplayName();

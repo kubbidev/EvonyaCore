@@ -6,7 +6,7 @@ import me.kubbidev.evonyacore.menu.PlayerMenuManager;
 import me.kubbidev.evonyacore.menu.PlayerMenuUtility;
 import me.kubbidev.evonyacore.menu.panel.game.MainSelectorPanel;
 import me.kubbidev.evonyacore.menu.panel.host.SlotsPanel;
-import me.kubbidev.evonyacore.players.EvonyaPlayer;
+import me.kubbidev.evonyacore.players.EPlayer;
 import me.kubbidev.evonyacore.players.PlayerManager;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -25,7 +25,7 @@ public class ItemInteractListener implements Listener {
 
     @EventHandler
     public void onInteract(PlayerInteractEvent event) {
-        final EvonyaPlayer player = PlayerManager.wrapEvonyaPlayer(event.getPlayer());
+        final EPlayer player = PlayerManager.wrapPlayer(event.getPlayer());
         final ItemStack itemStack = event.getItem();
 
         if (itemStack == null)

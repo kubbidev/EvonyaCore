@@ -1,7 +1,7 @@
 package me.kubbidev.evonyacore.listeners;
 
 import me.kubbidev.evonyacore.CityFunction;
-import me.kubbidev.evonyacore.players.EvonyaPlayer;
+import me.kubbidev.evonyacore.players.EPlayer;
 import me.kubbidev.evonyacore.players.PlayerManager;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -17,7 +17,7 @@ public class DropItemListener implements Listener {
 
     @EventHandler
     public void playerPlayerDropItem(PlayerDropItemEvent event) {
-        final EvonyaPlayer player = PlayerManager.wrapEvonyaPlayer(event.getPlayer());
+        final EPlayer player = PlayerManager.wrapPlayer(event.getPlayer());
 
         if (player.hasGameInstance())
             if (player.getGameInstance().isStarted())

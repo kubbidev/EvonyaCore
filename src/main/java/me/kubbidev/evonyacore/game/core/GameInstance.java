@@ -6,7 +6,7 @@ import me.kubbidev.evonyacore.game.GameManager;
 import me.kubbidev.evonyacore.game.Tracker;
 import me.kubbidev.evonyacore.game.core.inventory.CustomInventory;
 import me.kubbidev.evonyacore.game.core.inventory.EvonyaInventory;
-import me.kubbidev.evonyacore.players.EvonyaPlayer;
+import me.kubbidev.evonyacore.players.EPlayer;
 import me.kubbidev.evonyacore.players.PlayerManager;
 import me.kubbidev.evonyacore.players.Role;
 import org.bukkit.Location;
@@ -19,13 +19,13 @@ import java.util.stream.Collectors;
 public class GameInstance {
 
     private final World world;
-    private final EvonyaPlayer host;
+    private final EPlayer host;
 
     private final UUID uniqueId;
     private final int id;
-    private final List<EvonyaPlayer> coHost;
+    private final List<EPlayer> coHost;
 
-    private final List<EvonyaPlayer> players;
+    private final List<EPlayer> players;
     private final List<String> whitelist;
     private final List<Role> activeRoles;
     private final List<Location> placedBlock;
@@ -60,7 +60,7 @@ public class GameInstance {
      * @param host
      * the actual host of the game
      */
-    public GameInstance(World world, EvonyaPlayer host) {
+    public GameInstance(World world, EPlayer host) {
         this.world = world;
         this.host = host;
 
@@ -137,7 +137,7 @@ public class GameInstance {
         return world;
     }
 
-    public EvonyaPlayer getHost() {
+    public EPlayer getHost() {
         return host;
     }
 
@@ -149,11 +149,11 @@ public class GameInstance {
         return id;
     }
 
-    public List<EvonyaPlayer> getCoHost() {
+    public List<EPlayer> getCoHost() {
         return coHost;
     }
 
-    public List<EvonyaPlayer> getPlayers() {
+    public List<EPlayer> getPlayers() {
         return players;
     }
 
@@ -293,11 +293,11 @@ public class GameInstance {
 
     // -----| Utils Methods |----------------------------------------------------------------------------------------------------------------
 
-    public List<EvonyaPlayer> getWorldPlayers() {
-        return world.getPlayers().stream().map(PlayerManager::wrapEvonyaPlayer).collect(Collectors.toList());
+    public List<EPlayer> getWorldPlayers() {
+        return world.getPlayers().stream().map(PlayerManager::wrapPlayer).collect(Collectors.toList());
     }
 
-    public Tracker getTracker(EvonyaPlayer player) {
+    public Tracker getTracker(EPlayer player) {
         try {
             return getTracker(player.getUniqueId());
         } catch (TrackerDoesNotExistException e) {

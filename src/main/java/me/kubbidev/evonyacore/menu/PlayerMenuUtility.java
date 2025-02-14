@@ -1,16 +1,16 @@
 package me.kubbidev.evonyacore.menu;
 
-import me.kubbidev.evonyacore.players.EvonyaPlayer;
+import me.kubbidev.evonyacore.players.EPlayer;
 
 public final class PlayerMenuUtility {
 
-    private final EvonyaPlayer owner;
+    private final EPlayer owner;
 
-    public PlayerMenuUtility(EvonyaPlayer owner) {
+    public PlayerMenuUtility(EPlayer owner) {
         this.owner = owner;
     }
 
-    public EvonyaPlayer getOwner() {
+    public EPlayer getOwner() {
         return owner;
     }
 }

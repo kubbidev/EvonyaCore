@@ -2,7 +2,7 @@ package me.kubbidev.evonyacore.commands;
 
 import me.kubbidev.evonyacore.EvonyaPlugin;
 import me.kubbidev.evonyacore.game.GameManager;
-import me.kubbidev.evonyacore.players.EvonyaPlayer;
+import me.kubbidev.evonyacore.players.EPlayer;
 import me.kubbidev.evonyacore.players.PlayerManager;
 import me.kubbidev.evonyacore.queue.QueueSystem;
 import org.bukkit.command.Command;
@@ -25,7 +25,7 @@ public class QuitCommand implements CommandExecutor {
             EvonyaPlugin.LOGGER.warning("Only players can type this command!");
             return true;
         }
-        final EvonyaPlayer player = PlayerManager.wrapEvonyaPlayer((Player) sender);
+        final EPlayer player = PlayerManager.wrapPlayer((Player) sender);
 
         if (GameManager.getGamesInstance().isEmpty() || (!queueSystem.isQueue(player))) {
             player.sendMessage(EvonyaPlugin.PREFIX + "Vous n'êtes dans aucune &cfile d'attente&f.");

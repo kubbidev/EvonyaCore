@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-public class EvonyaPlayer {
+public class EPlayer {
 
     private EvonyaStatistic statistic;
 
@@ -41,7 +41,7 @@ public class EvonyaPlayer {
     private State state;
     private boolean bypass;
 
-    public EvonyaPlayer(UUID uniqueId, String username) {
+    public EPlayer(UUID uniqueId, String username) {
         this.uniqueId = uniqueId;
         this.username = username;
         this.rank = Rank.JOUEUR;
@@ -138,8 +138,8 @@ public class EvonyaPlayer {
         return (state == State.DEMONSLAYER_PLAYING);
     }
 
-    public List<EvonyaPlayer> getWorldPlayers() {
-        return getWorld().getPlayers().stream().map(PlayerManager::wrapEvonyaPlayer).collect(Collectors.toList());
+    public List<EPlayer> getWorldPlayers() {
+        return getWorld().getPlayers().stream().map(PlayerManager::wrapPlayer).collect(Collectors.toList());
     }
 
     public boolean isHost() {

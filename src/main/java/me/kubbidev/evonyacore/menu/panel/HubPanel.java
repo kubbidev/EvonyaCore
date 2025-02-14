@@ -5,7 +5,7 @@ import me.kubbidev.evonyacore.menu.Menu;
 import me.kubbidev.evonyacore.menu.MenuBorder;
 import me.kubbidev.evonyacore.menu.PlayerMenuUtility;
 import me.kubbidev.evonyacore.menu.panel.game.MainSelectorPanel;
-import me.kubbidev.evonyacore.players.EvonyaPlayer;
+import me.kubbidev.evonyacore.players.EPlayer;
 import me.kubbidev.evonyacore.players.PlayerManager;
 import me.kubbidev.evonyacore.players.Rank;
 import me.kubbidev.evonyacore.utils.Head;
@@ -84,7 +84,7 @@ public class HubPanel extends Menu {
 
     @Override
     public void handleMenu(InventoryClickEvent event) {
-        final EvonyaPlayer player = PlayerManager.wrapEvonyaPlayer((Player) event.getWhoClicked());
+        final EPlayer player = PlayerManager.wrapPlayer((Player) event.getWhoClicked());
         final ItemStack itemStack = event.getCurrentItem();
         final String name = itemStack.getItemMeta().getDisplayName();
         final Material material = itemStack.getType();
@@ -108,9 +108,9 @@ public class HubPanel extends Menu {
     }
 
     private int getRank(Rank rank) {
-        final List<EvonyaPlayer> admin = new ArrayList<>();
+        final List<EPlayer> admin = new ArrayList<>();
 
-        plugin.getLobby().getPlayers().stream().map(PlayerManager::wrapEvonyaPlayer).forEach(player -> {
+        plugin.getLobby().getPlayers().stream().map(PlayerManager::wrapPlayer).forEach(player -> {
 
             if (player.getPlayerRank() == rank) {
                 admin.add(player);

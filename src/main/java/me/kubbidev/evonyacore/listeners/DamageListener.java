@@ -9,7 +9,7 @@ import me.kubbidev.evonyacore.exceptions.TrackerDoesNotExistException;
 import me.kubbidev.evonyacore.game.Tracker;
 import me.kubbidev.evonyacore.game.core.GameInstance;
 import me.kubbidev.evonyacore.game.core.GameState;
-import me.kubbidev.evonyacore.players.EvonyaPlayer;
+import me.kubbidev.evonyacore.players.EPlayer;
 import me.kubbidev.evonyacore.players.PlayerManager;
 import me.kubbidev.evonyacore.players.State;
 import me.kubbidev.evonyacore.utils.EvonyaSounds;
@@ -38,7 +38,7 @@ public class DamageListener implements Listener {
         final Entity damager = event.getDamager();
 
         final Player bukkitPlayer = (Player) victim;
-        final EvonyaPlayer player = PlayerManager.wrapEvonyaPlayer(bukkitPlayer);
+        final EPlayer player = PlayerManager.wrapPlayer(bukkitPlayer);
 
         if (player.hasGameInstance())
             return;
@@ -63,7 +63,7 @@ public class DamageListener implements Listener {
                 bukkitKiller = (Player) arrow.getShooter();
             }
         }
-        final EvonyaPlayer killer = PlayerManager.wrapEvonyaPlayer(bukkitKiller);
+        final EPlayer killer = PlayerManager.wrapPlayer(bukkitKiller);
         final UUID killerUUID = killer.getUniqueId();
 
         if (!player.isPlaying() || !killer.isPlaying()) {
@@ -109,7 +109,7 @@ public class DamageListener implements Listener {
             return;
 
         final Player bukkitPlayer = (Player) victim;
-        final EvonyaPlayer player = PlayerManager.wrapEvonyaPlayer(bukkitPlayer);
+        final EPlayer player = PlayerManager.wrapPlayer(bukkitPlayer);
 
         if (player.hasGameInstance()) {
 

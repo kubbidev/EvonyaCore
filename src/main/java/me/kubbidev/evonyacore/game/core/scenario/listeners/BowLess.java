@@ -2,7 +2,7 @@ package me.kubbidev.evonyacore.game.core.scenario.listeners;
 
 import me.kubbidev.evonyacore.game.core.GameInstance;
 import me.kubbidev.evonyacore.game.core.scenario.ScenarioListener;
-import me.kubbidev.evonyacore.players.EvonyaPlayer;
+import me.kubbidev.evonyacore.players.EPlayer;
 import me.kubbidev.evonyacore.players.PlayerManager;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -23,7 +23,7 @@ public class BowLess extends ScenarioListener {
             return;
 
         final Player bukkitPlayer = (Player) entity;
-        final EvonyaPlayer player = PlayerManager.wrapEvonyaPlayer(bukkitPlayer);
+        final EPlayer player = PlayerManager.wrapPlayer(bukkitPlayer);
 
         if (player.hasGameInstance()) {
             if (player.getGameInstance().equals(super.gameInstance)) {

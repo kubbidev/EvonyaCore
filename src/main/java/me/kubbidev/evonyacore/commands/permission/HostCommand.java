@@ -4,7 +4,7 @@ import me.kubbidev.evonyacore.EvonyaPlugin;
 import me.kubbidev.evonyacore.players.PlayerManager;
 import me.kubbidev.evonyacore.players.Rank;
 import me.kubbidev.evonyacore.exceptions.EvonyaPlayerDoesNotExistException;
-import me.kubbidev.evonyacore.players.EvonyaPlayer;
+import me.kubbidev.evonyacore.players.EPlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -23,9 +23,9 @@ public class HostCommand implements CommandExecutor {
                 return true;
             }
             final String targetName = args[0];
-            final EvonyaPlayer target;
+            final EPlayer target;
             try {
-                target = PlayerManager.wrapEvonyaPlayer(targetName);
+                target = PlayerManager.wrapPlayer(targetName);
             } catch (EvonyaPlayerDoesNotExistException e) {
                 EvonyaPlugin.LOGGER.info("Ce joueur n'est pas connecté...");
                 return true;
@@ -46,7 +46,7 @@ public class HostCommand implements CommandExecutor {
 
         if (sender instanceof Player) {
 
-            final EvonyaPlayer player = PlayerManager.wrapEvonyaPlayer((Player) sender);
+            final EPlayer player = PlayerManager.wrapPlayer((Player) sender);
 
             if (player.getPlayerRank().isLowerThan(Rank.DEVELOPPEUR))
                 return false;
@@ -56,9 +56,9 @@ public class HostCommand implements CommandExecutor {
                 return true;
             }
             final String targetName = args[0];
-            final EvonyaPlayer target;
+            final EPlayer target;
             try {
-                target = PlayerManager.wrapEvonyaPlayer(targetName);
+                target = PlayerManager.wrapPlayer(targetName);
             } catch (EvonyaPlayerDoesNotExistException e) {
                 player.sendMessage(EvonyaPlugin.PREFIX + "Ce joueur n'est pas connecté...");
                 return true;

@@ -1,16 +1,16 @@
 package me.kubbidev.evonyacore.events;
 
-import me.kubbidev.evonyacore.players.EvonyaPlayer;
+import me.kubbidev.evonyacore.players.EPlayer;
 import org.bukkit.event.Event;
 
 public abstract class EvonyaPlayerEvent extends Event {
-    private final EvonyaPlayer player;
+    private final EPlayer player;
 
-    public EvonyaPlayerEvent(EvonyaPlayer player) {
+    public EvonyaPlayerEvent(EPlayer player) {
         this.player = player;
     }
 
-    public EvonyaPlayer getPlayer() {
+    public EPlayer getPlayer() {
         return player;
     }
 }

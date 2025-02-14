@@ -1,6 +1,6 @@
 package me.kubbidev.evonyacore.game;
 
-import me.kubbidev.evonyacore.players.EvonyaPlayer;
+import me.kubbidev.evonyacore.players.EPlayer;
 import me.kubbidev.evonyacore.players.Role;
 
 import java.util.UUID;
@@ -15,7 +15,7 @@ public class Tracker {
 
     private Role role;
 
-    public Tracker(EvonyaPlayer player) {
+    public Tracker(EPlayer player) {
         this.uniqueId = player.getUniqueId();
         this.username = player.getUsername();
 

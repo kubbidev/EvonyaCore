@@ -1,19 +1,14 @@
 package me.kubbidev.evonyacore.commands;
 
 import me.kubbidev.evonyacore.EvonyaPlugin;
-import me.kubbidev.evonyacore.exceptions.EvonyaPlayerDoesNotExistException;
-import me.kubbidev.evonyacore.players.EvonyaPlayer;
+import me.kubbidev.evonyacore.players.EPlayer;
 import me.kubbidev.evonyacore.players.PlayerManager;
 import me.kubbidev.nexuspowered.Commands;
 import me.kubbidev.nexuspowered.command.tabcomplete.CompletionSupplier;
 import me.kubbidev.nexuspowered.command.tabcomplete.TabCompleter;
 import me.kubbidev.nexuspowered.util.Players;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import java.util.Arrays;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -31,7 +26,7 @@ public final class ReplyCommand {
                         .handle(context))
                 .handler(context -> {
                     Player sender = context.sender();
-                    EvonyaPlayer eSender = PlayerManager.wrapEvonyaPlayer(sender);
+                    EPlayer eSender = PlayerManager.wrapPlayer(sender);
 
                     UUID lastPrivateMessage = eSender.getLastPrivateMessage();
                     if (lastPrivateMessage == null) {
@@ -45,7 +40,7 @@ public final class ReplyCommand {
                         return;
                     }
                     Player target = parse.get();
-                    EvonyaPlayer eTarget = PlayerManager.wrapEvonyaPlayer(target);
+                    EPlayer eTarget = PlayerManager.wrapPlayer(target);
                     if (!eTarget.isPrivateMessage()) {
                         context.reply("&cThis player does not receive private messages.");
                         return;

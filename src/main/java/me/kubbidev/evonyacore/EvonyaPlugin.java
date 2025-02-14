@@ -4,7 +4,7 @@ import me.kubbidev.evonyacore.commands.*;
 import me.kubbidev.evonyacore.commands.permission.*;
 import me.kubbidev.evonyacore.game.GameManager;
 import me.kubbidev.evonyacore.listeners.*;
-import me.kubbidev.evonyacore.players.EvonyaPlayer;
+import me.kubbidev.evonyacore.players.EPlayer;
 import me.kubbidev.evonyacore.players.PlayerManager;
 import me.kubbidev.evonyacore.queue.QueueSystem;
 import me.kubbidev.evonyacore.scoreboard.ScoreBoardManager;
@@ -60,10 +60,10 @@ public final class EvonyaPlugin extends ExtendedJavaPlugin {
     @Override
     public void disable() {
         Bukkit.getOnlinePlayers().forEach(bukkitPlayer -> {
-            final EvonyaPlayer evonyaPlayer = PlayerManager.wrapEvonyaPlayer(bukkitPlayer);
+            final EPlayer ePlayer = PlayerManager.wrapPlayer(bukkitPlayer);
 
             new EvonyaPlayerProvider(bukkitPlayer).saveAccount();
-            new EvonyaStatisticProvider(evonyaPlayer).saveStatistic();
+            new EvonyaStatisticProvider(ePlayer).saveStatistic();
         });
         WorldManager.deleteAllWorlds();
     }

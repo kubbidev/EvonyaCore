@@ -6,7 +6,7 @@ import me.kubbidev.evonyacore.LobbyFunction;
 import me.kubbidev.evonyacore.game.Tracker;
 import me.kubbidev.evonyacore.game.core.GameInstance;
 import me.kubbidev.evonyacore.game.core.scenario.Scenario;
-import me.kubbidev.evonyacore.players.EvonyaPlayer;
+import me.kubbidev.evonyacore.players.EPlayer;
 import me.kubbidev.evonyacore.players.Rank;
 import me.kubbidev.evonyacore.threads.UpdateScoreBoardThread;
 import me.kubbidev.evonyacore.utils.Utils;
@@ -32,7 +32,7 @@ public class ScoreBoardManager {
         this.scoreBoardLayout = new ScoreBoardLayout();
     }
 
-    public void setupScoreboard(EvonyaPlayer player) {
+    public void setupScoreboard(EPlayer player) {
         final FastBoard fastBoard = new FastBoard(player);
         this.fastBoards.add(fastBoard);
 
@@ -56,7 +56,7 @@ public class ScoreBoardManager {
         return fastBoards;
     }
 
-    public String translatePlaceholders(String string, EvonyaPlayer player) {
+    public String translatePlaceholders(String string, EPlayer player) {
         final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 
         GameInstance gameInstance = null;

@@ -4,7 +4,7 @@ import me.kubbidev.evonyacore.EvonyaPlugin;
 import me.kubbidev.evonyacore.players.PlayerManager;
 import me.kubbidev.evonyacore.players.Rank;
 import me.kubbidev.evonyacore.exceptions.EvonyaPlayerDoesNotExistException;
-import me.kubbidev.evonyacore.players.EvonyaPlayer;
+import me.kubbidev.evonyacore.players.EPlayer;
 import org.bukkit.GameMode;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -24,7 +24,7 @@ public class GamemodeCommand implements CommandExecutor, TabCompleter {
             EvonyaPlugin.LOGGER.warning("Only players can run this command");
             return true;
         }
-        final EvonyaPlayer player = PlayerManager.wrapEvonyaPlayer((Player) sender);
+        final EPlayer player = PlayerManager.wrapPlayer((Player) sender);
 
         if (player.getPlayerRank().isLowerThan(Rank.MODERATEUR)) {
 
@@ -66,9 +66,9 @@ public class GamemodeCommand implements CommandExecutor, TabCompleter {
             final String gamemode = args[0];
 
             final String targetName = args[1];
-            final EvonyaPlayer target;
+            final EPlayer target;
             try {
-                target = PlayerManager.wrapEvonyaPlayer(targetName);
+                target = PlayerManager.wrapPlayer(targetName);
             } catch (EvonyaPlayerDoesNotExistException e) {
                 player.sendMessage(EvonyaPlugin.PREFIX + "Ce joueur n'est pas connecté...");
                 return true;

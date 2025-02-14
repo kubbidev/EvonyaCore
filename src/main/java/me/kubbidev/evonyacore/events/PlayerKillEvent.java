@@ -1,25 +1,25 @@
 package me.kubbidev.evonyacore.events;
 
 import me.kubbidev.evonyacore.game.core.GameInstance;
-import me.kubbidev.evonyacore.players.EvonyaPlayer;
+import me.kubbidev.evonyacore.players.EPlayer;
 import org.bukkit.Location;
 import org.bukkit.event.HandlerList;
 
 public class PlayerKillEvent extends EvonyaPlayerEvent {
 
     private static final HandlerList HANDLERS = new HandlerList();
-    private final EvonyaPlayer killer;
+    private final EPlayer killer;
     private final Location location;
     private final GameInstance gameInstance;
 
-    public PlayerKillEvent(EvonyaPlayer victim, EvonyaPlayer killer, Location location, GameInstance gameInstance) {
+    public PlayerKillEvent(EPlayer victim, EPlayer killer, Location location, GameInstance gameInstance) {
         super(victim);
         this.killer = killer;
         this.location = location;
         this.gameInstance = gameInstance;
     }
 
-    public EvonyaPlayer getKiller() {
+    public EPlayer getKiller() {
         return killer;
     }
 

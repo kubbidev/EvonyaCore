@@ -6,7 +6,7 @@ import me.kubbidev.evonyacore.game.core.GameInstance;
 import me.kubbidev.evonyacore.menu.MenuBorder;
 import me.kubbidev.evonyacore.menu.PaginatedMenu;
 import me.kubbidev.evonyacore.menu.PlayerMenuUtility;
-import me.kubbidev.evonyacore.players.EvonyaPlayer;
+import me.kubbidev.evonyacore.players.EPlayer;
 import me.kubbidev.evonyacore.players.PlayerManager;
 import me.kubbidev.evonyacore.utils.Head;
 import me.kubbidev.evonyacore.utils.HeadType;
@@ -58,13 +58,13 @@ public class HostPanel extends PaginatedMenu {
         return ItemStackBuilder.of(Material.STAINED_GLASS_PANE).data(7).build();
     }
 
-    private List<EvonyaPlayer> coHosts;
+    private List<EPlayer> coHosts;
 
     @Override
     public void setMenuItems() {
         coHostsd.clear();
         final GameInstance gameInstance = playerMenuUtility.getOwner().getGameInstance();
-        final EvonyaPlayer host = gameInstance.getHost();
+        final EPlayer host = gameInstance.getHost();
 
         coHosts = gameInstance.getCoHost().stream().filter(p -> !host.equals(p)).collect(Collectors.toList());
 
@@ -94,7 +94,7 @@ public class HostPanel extends PaginatedMenu {
             if (index >= coHostsSize)
                 break;
 
-            final EvonyaPlayer coHost = coHosts.get(index);
+            final EPlayer coHost = coHosts.get(index);
             final String name = "&8┃&6 " + coHost.getUsername();
             final ItemStack itemStack = new Item(Material.SKULL_ITEM).setName(name).parseItem();
             final ItemMeta itemMeta = itemStack.getItemMeta();
@@ -113,7 +113,7 @@ public class HostPanel extends PaginatedMenu {
 
     @Override
     public void handleMenu(InventoryClickEvent event) {
-        final EvonyaPlayer player = PlayerManager.wrapEvonyaPlayer((Player) event.getWhoClicked());
+        final EPlayer player = PlayerManager.wrapPlayer((Player) event.getWhoClicked());
         final ItemStack itemStack = event.getCurrentItem();
         final ClickType clickType = event.getClick();
         final Material material = itemStack.getType();
@@ -148,9 +148,9 @@ public class HostPanel extends PaginatedMenu {
                 if (cohostUUID == null) {
                     new HostAddingPanel(playerMenuUtility, plugin).open();
                 } else {
-                    final EvonyaPlayer coHost;
+                    final EPlayer coHost;
                     try {
-                        coHost = PlayerManager.wrapEvonyaPlayer(cohostUUID);
+                        coHost = PlayerManager.wrapPlayer(cohostUUID);
                     } catch (EvonyaPlayerDoesNotExistException e) {
                         throw new RuntimeException(e);
                     }

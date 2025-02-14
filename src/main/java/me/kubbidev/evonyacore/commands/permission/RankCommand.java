@@ -2,7 +2,7 @@ package me.kubbidev.evonyacore.commands.permission;
 
 import me.kubbidev.evonyacore.EvonyaPlugin;
 import me.kubbidev.evonyacore.exceptions.EvonyaPlayerDoesNotExistException;
-import me.kubbidev.evonyacore.players.EvonyaPlayer;
+import me.kubbidev.evonyacore.players.EPlayer;
 import me.kubbidev.evonyacore.players.PlayerManager;
 import org.bukkit.command.*;
 import org.bukkit.entity.Player;
@@ -24,9 +24,9 @@ public class RankCommand implements CommandExecutor, TabCompleter {
                 return true;
             }
             final String targetName = args[0];
-            final EvonyaPlayer target;
+            final EPlayer target;
             try {
-                target = PlayerManager.wrapEvonyaPlayer(targetName);
+                target = PlayerManager.wrapPlayer(targetName);
             } catch (EvonyaPlayerDoesNotExistException e) {
                 EvonyaPlugin.LOGGER.info("Ce joueur n'est pas connecté...");
                 return true;
@@ -46,7 +46,7 @@ public class RankCommand implements CommandExecutor, TabCompleter {
 
         if(sender instanceof Player) {
 
-            final EvonyaPlayer player = PlayerManager.wrapEvonyaPlayer((Player) sender);
+            final EPlayer player = PlayerManager.wrapPlayer((Player) sender);
 
             if (player.getPlayerRank().isLowerThan(DEVELOPPEUR))
                 return false;
@@ -56,9 +56,9 @@ public class RankCommand implements CommandExecutor, TabCompleter {
                 return true;
             }
             final String targetName = args[0];
-            final EvonyaPlayer target;
+            final EPlayer target;
             try {
-                target = PlayerManager.wrapEvonyaPlayer(targetName);
+                target = PlayerManager.wrapPlayer(targetName);
             } catch (EvonyaPlayerDoesNotExistException e) {
                 player.sendMessage(EvonyaPlugin.PREFIX + "Ce joueur n'est pas connecté...");
                 return true;

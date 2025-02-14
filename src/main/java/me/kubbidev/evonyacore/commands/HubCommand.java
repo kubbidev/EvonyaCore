@@ -14,7 +14,7 @@ public final class HubCommand {
                 .assertPermission("evonyacore.hub")
                 .description("Teleport you back to the server hub")
                 .assertPlayer()
-                .handler(context -> function.lobbyEnter(PlayerManager.wrapEvonyaPlayer(context.sender())))
+                .handler(context -> function.lobbyEnter(PlayerManager.wrapPlayer(context.sender())))
                 .register("hub", "lobby", "spawn");
     }
 }

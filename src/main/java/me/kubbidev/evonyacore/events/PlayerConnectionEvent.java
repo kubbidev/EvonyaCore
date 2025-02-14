@@ -1,7 +1,7 @@
 package me.kubbidev.evonyacore.events;
 
 import me.kubbidev.evonyacore.game.core.GameInstance;
-import me.kubbidev.evonyacore.players.EvonyaPlayer;
+import me.kubbidev.evonyacore.players.EPlayer;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 
@@ -11,7 +11,7 @@ public class PlayerConnectionEvent extends EvonyaPlayerEvent implements Cancella
     private final GameInstance gameInstance;
     private boolean cancelled;
 
-    public PlayerConnectionEvent(EvonyaPlayer player, GameInstance gameInstance) {
+    public PlayerConnectionEvent(EPlayer player, GameInstance gameInstance) {
         super(player);
         this.gameInstance = gameInstance;
     }

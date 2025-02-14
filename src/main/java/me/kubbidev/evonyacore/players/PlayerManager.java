@@ -11,10 +11,10 @@ import java.util.UUID;
 
 public class PlayerManager {
 
-    private static final List<EvonyaPlayer> EVONYA_PLAYERS = Collections.synchronizedList(new ArrayList<>());
+    private static final List<EPlayer> EVONYA_PLAYERS = Collections.synchronizedList(new ArrayList<>());
     private static final List<EvonyaStatistic> EVONYA_STATISTICS = Collections.synchronizedList(new ArrayList<>());
 
-    public static List<EvonyaPlayer> getEvonyaPlayers() {
+    public static List<EPlayer> getEvonyaPlayers() {
         return EVONYA_PLAYERS;
     }
 
@@ -22,26 +22,26 @@ public class PlayerManager {
         return EVONYA_STATISTICS;
     }
 
-    public static synchronized EvonyaPlayer wrapEvonyaPlayer(Player player) {
+    public static synchronized EPlayer wrapPlayer(Player player) {
         try {
-            return wrapEvonyaPlayer(player.getUniqueId());
+            return wrapPlayer(player.getUniqueId());
         } catch (EvonyaPlayerDoesNotExistException ex) {
             throw new RuntimeException(ex);
         }
     }
 
-    public static synchronized EvonyaPlayer wrapEvonyaPlayer(UUID uuid) throws EvonyaPlayerDoesNotExistException {
-        for (EvonyaPlayer evonyaPlayer : EVONYA_PLAYERS) {
-            if (evonyaPlayer.getUniqueId().equals(uuid))
-                return evonyaPlayer;
+    public static synchronized EPlayer wrapPlayer(UUID uuid) throws EvonyaPlayerDoesNotExistException {
+        for (EPlayer ePlayer : EVONYA_PLAYERS) {
+            if (ePlayer.getUniqueId().equals(uuid))
+                return ePlayer;
         }
         throw new EvonyaPlayerDoesNotExistException(uuid.toString());
     }
 
-    public static synchronized EvonyaPlayer wrapEvonyaPlayer(String username) throws EvonyaPlayerDoesNotExistException {
-        for (EvonyaPlayer evonyaPlayer : EVONYA_PLAYERS) {
-            if (evonyaPlayer.getUsername().equals(username))
-                return evonyaPlayer;
+    public static synchronized EPlayer wrapPlayer(String username) throws EvonyaPlayerDoesNotExistException {
+        for (EPlayer ePlayer : EVONYA_PLAYERS) {
+            if (ePlayer.getUsername().equals(username))
+                return ePlayer;
         }
         throw new EvonyaPlayerDoesNotExistException(username);
     }
@@ -50,7 +50,7 @@ public class PlayerManager {
         return EVONYA_PLAYERS.stream().anyMatch(account -> account.getUniqueId().equals(player.getUniqueId()));
     }
 
-    public static synchronized EvonyaStatistic wrapEvonyaStatistic(EvonyaPlayer player) {
+    public static synchronized EvonyaStatistic wrapEvonyaStatistic(EPlayer player) {
         try {
             return wrapEvonyaStatistic(player.getUniqueId());
         } catch (EvonyaStatisticDoesNotExistException e) {
@@ -66,7 +66,7 @@ public class PlayerManager {
         throw new EvonyaStatisticDoesNotExistException(uuid.toString());
     }
 
-    public static synchronized boolean hasEvonyaStatistic(EvonyaPlayer player) {
+    public static synchronized boolean hasEvonyaStatistic(EPlayer player) {
         return EVONYA_STATISTICS.stream().anyMatch(statistic -> statistic.getUuid().equals(player.getUniqueId()));
     }
 }

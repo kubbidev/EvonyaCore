@@ -4,7 +4,7 @@ import me.kubbidev.evonyacore.EvonyaPlugin;
 import me.kubbidev.evonyacore.exceptions.EvonyaPlayerDoesNotExistException;
 import me.kubbidev.evonyacore.menu.PlayerMenuManager;
 import me.kubbidev.evonyacore.menu.panel.GameStatsPanel;
-import me.kubbidev.evonyacore.players.EvonyaPlayer;
+import me.kubbidev.evonyacore.players.EPlayer;
 import me.kubbidev.evonyacore.players.PlayerManager;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -26,16 +26,16 @@ public class StatsCommand implements CommandExecutor {
             EvonyaPlugin.LOGGER.warning("Only players can type this command!");
             return true;
         }
-        final EvonyaPlayer player = PlayerManager.wrapEvonyaPlayer((Player) sender);
+        final EPlayer player = PlayerManager.wrapPlayer((Player) sender);
 
         if (args.length == 0) {
             new GameStatsPanel(PlayerMenuManager.getPlayerMenuUtility(player), plugin).open();
         }
         else if (args.length == 1) {
             final String targetName = args[0];
-            final EvonyaPlayer target;
+            final EPlayer target;
             try {
-                target = PlayerManager.wrapEvonyaPlayer(targetName);
+                target = PlayerManager.wrapPlayer(targetName);
             } catch (EvonyaPlayerDoesNotExistException e) {
                 player.sendMessage(EvonyaPlugin.PREFIX + "Ce joueur n'est pas connecté...");
                 return true;

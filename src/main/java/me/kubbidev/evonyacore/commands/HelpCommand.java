@@ -1,7 +1,7 @@
 package me.kubbidev.evonyacore.commands;
 
 import me.kubbidev.evonyacore.EvonyaPlugin;
-import me.kubbidev.evonyacore.players.EvonyaPlayer;
+import me.kubbidev.evonyacore.players.EPlayer;
 import me.kubbidev.evonyacore.players.PlayerManager;
 import me.kubbidev.evonyacore.utils.Message;
 import org.bukkit.command.Command;
@@ -32,7 +32,7 @@ public class HelpCommand implements CommandExecutor {
             return true;
         }
 
-        final EvonyaPlayer player = PlayerManager.wrapEvonyaPlayer((Player) sender);
+        final EPlayer player = PlayerManager.wrapPlayer((Player) sender);
 
         player.sendMessage(" ");
         player.sendMessage(" &8┃ &c&lAide - Page 1/1");

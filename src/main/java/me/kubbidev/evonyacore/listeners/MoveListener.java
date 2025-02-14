@@ -1,7 +1,7 @@
 package me.kubbidev.evonyacore.listeners;
 
 import me.kubbidev.evonyacore.LobbyFunction;
-import me.kubbidev.evonyacore.players.EvonyaPlayer;
+import me.kubbidev.evonyacore.players.EPlayer;
 import me.kubbidev.evonyacore.players.PlayerManager;
 import me.kubbidev.evonyacore.utils.Message;
 import org.bukkit.Location;
@@ -25,7 +25,7 @@ public class MoveListener implements Listener {
         if (locFrom.getBlockX() == locTo.getBlockX() && locFrom.getBlockY() == locTo.getBlockY() && locFrom.getBlockZ() == locTo.getBlockZ())
             return;
 
-        final EvonyaPlayer player = PlayerManager.wrapEvonyaPlayer(event.getPlayer());
+        final EPlayer player = PlayerManager.wrapPlayer(event.getPlayer());
 
         if (locTo.getBlockY() < 0)
             lobbyFunction.lobbyEnter(player);

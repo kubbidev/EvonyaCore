@@ -1,7 +1,7 @@
 package me.kubbidev.evonyacore.storage;
 
 import me.kubbidev.evonyacore.EvonyaPlugin;
-import me.kubbidev.evonyacore.players.EvonyaPlayer;
+import me.kubbidev.evonyacore.players.EPlayer;
 import me.kubbidev.evonyacore.players.EvonyaStatistic;
 import me.kubbidev.evonyacore.players.PlayerManager;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -11,10 +11,10 @@ import java.io.IOException;
 
 public class EvonyaStatisticProvider {
 
-    private final EvonyaPlayer player;
+    private final EPlayer player;
     private final File file;
 
-    public EvonyaStatisticProvider(EvonyaPlayer player) {
+    public EvonyaStatisticProvider(EPlayer player) {
         this.player = player;
 
         this.loadDir();

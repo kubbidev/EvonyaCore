@@ -4,7 +4,7 @@ import me.kubbidev.evonyacore.EvonyaPlugin;
 import me.kubbidev.evonyacore.events.PlayerConnectionEvent;
 import me.kubbidev.evonyacore.game.core.GameInstance;
 import me.kubbidev.evonyacore.LobbyFunction;
-import me.kubbidev.evonyacore.players.EvonyaPlayer;
+import me.kubbidev.evonyacore.players.EPlayer;
 import me.kubbidev.evonyacore.utils.Item;
 import me.kubbidev.evonyacore.utils.Message;
 import org.bukkit.Bukkit;
@@ -30,7 +30,7 @@ public class QueueSystem {
         return queueList;
     }
 
-    public void connect(EvonyaPlayer player, GameInstance gameInstance) {
+    public void connect(EPlayer player, GameInstance gameInstance) {
         final Queue queue = getQueue(gameInstance);
 
         if (isQueue(player)) {
@@ -41,11 +41,11 @@ public class QueueSystem {
         }
     }
 
-    public boolean isQueue(EvonyaPlayer player) {
+    public boolean isQueue(EPlayer player) {
         return this.queueList.stream().anyMatch(queue -> queue.containsPlayer(player));
     }
 
-    public Queue getQueue(EvonyaPlayer player) {
+    public Queue getQueue(EPlayer player) {
         return this.queueList.stream().filter(queue -> queue.containsPlayer(player)).findFirst().orElse(null);
     }
 
@@ -57,7 +57,7 @@ public class QueueSystem {
         return queue;
     }
 
-    private void queueRegularClean(EvonyaPlayer player, Queue queue) {
+    private void queueRegularClean(EPlayer player, Queue queue) {
         queue.addPlayer(player);
         player.getInventory().setItem(4, new Item(Material.BARRIER).setName("&8┃ &c&lQuitter la file d'attente&f (Clic-Droit)").parseItem());
         player.updateInventory();
@@ -110,7 +110,7 @@ public class QueueSystem {
         return null;
     }
 
-    private void sendConnectionMessage(EvonyaPlayer player, Queue queue) {
+    private void sendConnectionMessage(EPlayer player, Queue queue) {
         player.sendMessage(" ");
         player.sendMessage(EvonyaPlugin.PREFIX + "Vous avez bien été ajouté à la &3file d'attente&f...");
         player.sendMessage(EvonyaPlugin.PREFIX + "Attente éstimée : &c" + getQueueTime(queue) + "&f seconde(s).");

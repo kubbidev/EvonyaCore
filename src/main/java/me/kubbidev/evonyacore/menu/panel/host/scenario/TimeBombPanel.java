@@ -7,7 +7,7 @@ import me.kubbidev.evonyacore.menu.MenuBorder;
 import me.kubbidev.evonyacore.menu.PlayerMenuUtility;
 import me.kubbidev.evonyacore.menu.ScenarioMenu;
 import me.kubbidev.evonyacore.menu.panel.host.RegisteredScenarioPanel;
-import me.kubbidev.evonyacore.players.EvonyaPlayer;
+import me.kubbidev.evonyacore.players.EPlayer;
 import me.kubbidev.evonyacore.players.PlayerManager;
 import me.kubbidev.evonyacore.utils.*;
 import me.kubbidev.nexuspowered.item.ItemStackBuilder;
@@ -83,7 +83,7 @@ public class TimeBombPanel extends ScenarioMenu {
         final Material material = itemStack.getType();
 
         final String name = itemStack.getItemMeta().getDisplayName();
-        final EvonyaPlayer player = PlayerManager.wrapEvonyaPlayer((Player) event.getWhoClicked());
+        final EPlayer player = PlayerManager.wrapPlayer((Player) event.getWhoClicked());
         final Settings settings = scenario.getSettings();
 
         if (material == Material.STAINED_GLASS_PANE)

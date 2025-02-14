@@ -1,6 +1,6 @@
 package me.kubbidev.evonyacore.scoreboard;
 
-import me.kubbidev.evonyacore.players.EvonyaPlayer;
+import me.kubbidev.evonyacore.players.EPlayer;
 import me.kubbidev.evonyacore.players.Role;
 import me.kubbidev.evonyacore.players.Rank;
 import org.bukkit.Bukkit;
@@ -23,7 +23,7 @@ public class FastBoard {
                     ChatColor.DARK_GREEN + "" + ChatColor.RESET, ChatColor.BLUE + "" + ChatColor.RESET, ChatColor.STRIKETHROUGH + "" + ChatColor.RESET, ChatColor.MAGIC + "" + ChatColor.RESET, ChatColor.DARK_RED + "" + ChatColor.RESET
             };
 
-    private final EvonyaPlayer player;
+    private final EPlayer player;
     private final Scoreboard scoreboard;
 
     private final List<String> lines = new ArrayList<>();
@@ -33,7 +33,7 @@ public class FastBoard {
     private Objective objective;
     private String title = ChatColor.RESET.toString();
 
-    public FastBoard(EvonyaPlayer player) {
+    public FastBoard(EPlayer player) {
         this.player = Objects.requireNonNull(player, "player");
         this.scoreboard = Bukkit.getScoreboardManager().getNewScoreboard();
 
@@ -97,7 +97,7 @@ public class FastBoard {
         }
     }
 
-    public EvonyaPlayer getPlayer() {
+    public EPlayer getPlayer() {
         return this.player;
     }
 

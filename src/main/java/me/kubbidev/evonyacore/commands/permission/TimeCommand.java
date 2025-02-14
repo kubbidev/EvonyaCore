@@ -3,7 +3,7 @@ package me.kubbidev.evonyacore.commands.permission;
 import me.kubbidev.evonyacore.EvonyaPlugin;
 import me.kubbidev.evonyacore.players.PlayerManager;
 import me.kubbidev.evonyacore.players.Rank;
-import me.kubbidev.evonyacore.players.EvonyaPlayer;
+import me.kubbidev.evonyacore.players.EPlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -22,7 +22,7 @@ public class TimeCommand implements CommandExecutor, TabCompleter {
             EvonyaPlugin.LOGGER.warning("Only players can run this command");
             return true;
         }
-        final EvonyaPlayer player = PlayerManager.wrapEvonyaPlayer((Player) sender);
+        final EPlayer player = PlayerManager.wrapPlayer((Player) sender);
 
         if (player.getPlayerRank().isLowerThan(Rank.DEVELOPPEUR))
             return false;

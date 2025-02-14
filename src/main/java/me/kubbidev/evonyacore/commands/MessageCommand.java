@@ -1,7 +1,7 @@
 package me.kubbidev.evonyacore.commands;
 
 import me.kubbidev.evonyacore.EvonyaPlugin;
-import me.kubbidev.evonyacore.players.EvonyaPlayer;
+import me.kubbidev.evonyacore.players.EPlayer;
 import me.kubbidev.evonyacore.players.PlayerManager;
 import me.kubbidev.nexuspowered.Commands;
 import me.kubbidev.nexuspowered.command.context.CommandContext;
@@ -62,7 +62,7 @@ public final class MessageCommand {
             context.reply("&cYou cannot send a message to yourself.");
             return;
         }
-        EvonyaPlayer eTarget = PlayerManager.wrapEvonyaPlayer(target);
+        EPlayer eTarget = PlayerManager.wrapPlayer(target);
         if (!eTarget.isPrivateMessage()) {
             context.reply("&cThis player does not receive private messages.");
             return;
@@ -74,7 +74,7 @@ public final class MessageCommand {
         send(sender, target, message.toString());
         send(target, sender, message.toString());
 
-        EvonyaPlayer eSender = PlayerManager.wrapEvonyaPlayer(sender);
+        EPlayer eSender = PlayerManager.wrapPlayer(sender);
         eSender.setLastPrivateMessage(target.getUniqueId());
         eTarget.setLastPrivateMessage(sender.getUniqueId());
     }
@@ -95,7 +95,7 @@ public final class MessageCommand {
     }
 
     private static void open(CommandContext<Player> context) {
-        EvonyaPlayer player = PlayerManager.wrapEvonyaPlayer(context.sender());
+        EPlayer player = PlayerManager.wrapPlayer(context.sender());
         if (player.isPrivateMessage()) {
             context.reply("&eYour private messages are already opened!");
         } else {
@@ -105,7 +105,7 @@ public final class MessageCommand {
     }
 
     private static void close(CommandContext<Player> context) {
-        EvonyaPlayer player = PlayerManager.wrapEvonyaPlayer(context.sender());
+        EPlayer player = PlayerManager.wrapPlayer(context.sender());
         if (!player.isPrivateMessage()) {
             context.reply("&eYour private messages are already closed!");
         } else {

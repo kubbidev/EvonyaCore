@@ -3,7 +3,7 @@ package me.kubbidev.evonyacore.commands.permission;
 import me.kubbidev.evonyacore.players.PlayerManager;
 import me.kubbidev.evonyacore.players.Rank;
 import me.kubbidev.evonyacore.utils.EvonyaSounds;
-import me.kubbidev.evonyacore.players.EvonyaPlayer;
+import me.kubbidev.evonyacore.players.EPlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -27,7 +27,7 @@ public class BroadcastCommand implements CommandExecutor {
 
         if (sender instanceof Player) {
 
-            final EvonyaPlayer player = PlayerManager.wrapEvonyaPlayer((Player) sender);
+            final EPlayer player = PlayerManager.wrapPlayer((Player) sender);
 
             if (player.getPlayerRank().isLowerThan(Rank.DEVELOPPEUR))
                 return false;
@@ -42,7 +42,7 @@ public class BroadcastCommand implements CommandExecutor {
 
     private void sendBroadcast(String sender, StringBuilder message) {
         PlayerManager.getEvonyaPlayers().stream()
-                .filter(EvonyaPlayer::isOnline)
+                .filter(EPlayer::isOnline)
                 .forEach(player -> {
 
                     player.sendMessage(" ");

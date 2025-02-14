@@ -1,7 +1,7 @@
 package me.kubbidev.evonyacore.commands;
 
 import me.kubbidev.evonyacore.EvonyaPlugin;
-import me.kubbidev.evonyacore.players.EvonyaPlayer;
+import me.kubbidev.evonyacore.players.EPlayer;
 import me.kubbidev.evonyacore.players.PlayerManager;
 import me.kubbidev.nexuspowered.util.Tps;
 import org.bukkit.Bukkit;
@@ -36,7 +36,7 @@ public class LagCommand implements CommandExecutor {
         }
 
         if (sender instanceof Player) {
-            final EvonyaPlayer player = PlayerManager.wrapEvonyaPlayer((Player) sender);
+            final EPlayer player = PlayerManager.wrapPlayer((Player) sender);
 
             player.sendMessage(" ");
             player.sendMessage(" &c&lINFOS ┃ EVONYA");

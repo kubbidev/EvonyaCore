@@ -7,7 +7,7 @@ import me.kubbidev.evonyacore.menu.MenuBorder;
 import me.kubbidev.evonyacore.players.PlayerManager;
 import me.kubbidev.evonyacore.utils.HeadType;
 import me.kubbidev.evonyacore.menu.PlayerMenuUtility;
-import me.kubbidev.evonyacore.players.EvonyaPlayer;
+import me.kubbidev.evonyacore.players.EPlayer;
 import me.kubbidev.evonyacore.utils.Item;
 import me.kubbidev.evonyacore.utils.Utils;
 import me.kubbidev.evonyacore.utils.Head;
@@ -140,7 +140,7 @@ public class SlotsPanel extends Menu {
         final Material material = itemStack.getType();
         final String name = itemStack.getItemMeta().getDisplayName();
 
-        final EvonyaPlayer player = PlayerManager.wrapEvonyaPlayer((Player) event.getWhoClicked());
+        final EPlayer player = PlayerManager.wrapPlayer((Player) event.getWhoClicked());
         final GameInstance gameInstance = player.getGameInstance();
 
         final boolean bool;

@@ -3,7 +3,7 @@ package me.kubbidev.evonyacore.storage;
 import me.kubbidev.evonyacore.EvonyaPlugin;
 import me.kubbidev.evonyacore.players.PlayerManager;
 import me.kubbidev.evonyacore.players.Rank;
-import me.kubbidev.evonyacore.players.EvonyaPlayer;
+import me.kubbidev.evonyacore.players.EPlayer;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
@@ -28,52 +28,52 @@ public class EvonyaPlayerProvider {
             dir.mkdir();
     }
 
-    public EvonyaPlayer loadAccount() {
+    public EPlayer loadAccount() {
         if (!PlayerManager.hasEvonyaPlayer(player))
             return this.loadFromFile();
-        else return PlayerManager.wrapEvonyaPlayer(player);
+        else return PlayerManager.wrapPlayer(player);
     }
 
-    public EvonyaPlayer saveAccount() {
+    public EPlayer saveAccount() {
         final YamlConfiguration yaml;
 
         if (!this.file.exists())
             yaml = setupYaml();
         else yaml = getYaml();
 
-        final EvonyaPlayer evonyaPlayer = PlayerManager.wrapEvonyaPlayer(player);
+        final EPlayer ePlayer = PlayerManager.wrapPlayer(player);
         try {
             yaml.set("username", player.getName());
-            yaml.set("playerRank", evonyaPlayer.getPlayerRank().getValue());
-            yaml.set("hosts", evonyaPlayer.getHosts());
-            yaml.set("pwl", evonyaPlayer.getPreWL());
-            yaml.set("privateMessage", evonyaPlayer.isPrivateMessage());
+            yaml.set("playerRank", ePlayer.getPlayerRank().getValue());
+            yaml.set("hosts", ePlayer.getHosts());
+            yaml.set("pwl", ePlayer.getPreWL());
+            yaml.set("privateMessage", ePlayer.isPrivateMessage());
 
             yaml.save(file);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return evonyaPlayer;
+        return ePlayer;
     }
 
-    private EvonyaPlayer loadFromFile() {
+    private EPlayer loadFromFile() {
         final YamlConfiguration yaml;
 
         if (!this.file.exists())
             yaml = setupYaml();
         else yaml = getYaml();
 
-        final EvonyaPlayer evonyaPlayer = new EvonyaPlayer(player.getUniqueId(), player.getName());
+        final EPlayer ePlayer = new EPlayer(player.getUniqueId(), player.getName());
         final Rank rank = Rank.getRankByValue(yaml.getInt("playerRank"));
 
-        evonyaPlayer.setPlayerRank(rank);
-        evonyaPlayer.setHosts(yaml.getInt("hosts"));
-        evonyaPlayer.setPreWL(yaml.getInt("pwl"));
-        evonyaPlayer.setPrivateMessage(yaml.getBoolean("privateMessage"));
+        ePlayer.setPlayerRank(rank);
+        ePlayer.setHosts(yaml.getInt("hosts"));
+        ePlayer.setPreWL(yaml.getInt("pwl"));
+        ePlayer.setPrivateMessage(yaml.getBoolean("privateMessage"));
 
-        PlayerManager.getEvonyaPlayers().add(evonyaPlayer);
+        PlayerManager.getEvonyaPlayers().add(ePlayer);
 
-        return evonyaPlayer;
+        return ePlayer;
     }
 
     private YamlConfiguration setupYaml() {
@@ -82,15 +82,15 @@ public class EvonyaPlayerProvider {
             if (!file.exists()) {
                 file.createNewFile();
             }
-            final EvonyaPlayer evonyaPlayer = new EvonyaPlayer(player.getUniqueId(), player.getName());
+            final EPlayer ePlayer = new EPlayer(player.getUniqueId(), player.getName());
             yaml = YamlConfiguration.loadConfiguration(file);
 
-            yaml.addDefault("uuid", evonyaPlayer.getUniqueId());
-            yaml.addDefault("username", evonyaPlayer.getUsername());
-            yaml.addDefault("playerRank", evonyaPlayer.getPlayerRank().getValue());
-            yaml.addDefault("hosts", evonyaPlayer.getHosts());
-            yaml.addDefault("pwl", evonyaPlayer.getPreWL());
-            yaml.addDefault("privateMessage", evonyaPlayer.isPrivateMessage());
+            yaml.addDefault("uuid", ePlayer.getUniqueId());
+            yaml.addDefault("username", ePlayer.getUsername());
+            yaml.addDefault("playerRank", ePlayer.getPlayerRank().getValue());
+            yaml.addDefault("hosts", ePlayer.getHosts());
+            yaml.addDefault("pwl", ePlayer.getPreWL());
+            yaml.addDefault("privateMessage", ePlayer.isPrivateMessage());
 
             yaml.save(file);
         } catch (IOException e) {

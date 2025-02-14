@@ -4,7 +4,7 @@ import me.kubbidev.evonyacore.EvonyaPlugin;
 import me.kubbidev.evonyacore.game.GameManager;
 import me.kubbidev.evonyacore.game.core.GameInstance;
 import me.kubbidev.evonyacore.game.core.GameState;
-import me.kubbidev.evonyacore.players.EvonyaPlayer;
+import me.kubbidev.evonyacore.players.EPlayer;
 import me.kubbidev.evonyacore.players.PlayerManager;
 import me.kubbidev.evonyacore.queue.QueueSystem;
 import org.bukkit.command.Command;
@@ -32,7 +32,7 @@ public class JoinCommand implements CommandExecutor, TabCompleter {
 			return true;
 		}
 
-		final EvonyaPlayer player = PlayerManager.wrapEvonyaPlayer((Player) sender);
+		final EPlayer player = PlayerManager.wrapPlayer((Player) sender);
 
 		if (player.hasGameInstance()) {
 			if (player.getGameInstance().getGameState() != GameState.ENDED) {

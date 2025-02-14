@@ -6,7 +6,7 @@ import me.kubbidev.evonyacore.game.core.GameInstance;
 import me.kubbidev.evonyacore.menu.Menu;
 import me.kubbidev.evonyacore.menu.MenuBorder;
 import me.kubbidev.evonyacore.menu.PlayerMenuUtility;
-import me.kubbidev.evonyacore.players.EvonyaPlayer;
+import me.kubbidev.evonyacore.players.EPlayer;
 import me.kubbidev.evonyacore.players.PlayerManager;
 import me.kubbidev.evonyacore.utils.Head;
 import me.kubbidev.evonyacore.utils.HeadType;
@@ -78,7 +78,7 @@ public class GameCreationPanel extends Menu {
 
     @Override
     public void handleMenu(InventoryClickEvent event) {
-        final EvonyaPlayer player = PlayerManager.wrapEvonyaPlayer((Player) event.getWhoClicked());
+        final EPlayer player = PlayerManager.wrapPlayer((Player) event.getWhoClicked());
         final ItemStack itemStack = event.getCurrentItem();
         final String name = itemStack.getItemMeta().getDisplayName();
         final Material material = itemStack.getType();

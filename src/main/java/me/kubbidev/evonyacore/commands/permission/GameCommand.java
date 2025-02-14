@@ -5,7 +5,7 @@ import me.kubbidev.evonyacore.game.GameManager;
 import me.kubbidev.evonyacore.game.core.GameInstance;
 import me.kubbidev.evonyacore.players.PlayerManager;
 import me.kubbidev.evonyacore.players.Rank;
-import me.kubbidev.evonyacore.players.EvonyaPlayer;
+import me.kubbidev.evonyacore.players.EPlayer;
 import me.kubbidev.evonyacore.utils.Message;
 import org.bukkit.command.*;
 import org.bukkit.entity.Player;
@@ -68,7 +68,7 @@ public class GameCommand implements CommandExecutor, TabCompleter {
         }
 
         if (sender instanceof Player) {
-            final EvonyaPlayer player = PlayerManager.wrapEvonyaPlayer((Player) sender);
+            final EPlayer player = PlayerManager.wrapPlayer((Player) sender);
 
             if (player.getPlayerRank().isLowerThan(Rank.MODERATEUR))
                 return false;
@@ -120,7 +120,7 @@ public class GameCommand implements CommandExecutor, TabCompleter {
         return true;
     }
 
-    private void sendHelpMessage(EvonyaPlayer player) {
+    private void sendHelpMessage(EPlayer player) {
         player.sendMessage(" ");
         player.sendMessage(" &8┃ &c&lGame - Commandes disponibles");
         new Message("    &8•&c /game delete <id> &f»&7 Supprime une partie existante.").setCommand("/game delete <id>").setHoverMessage("Cliquez pour exécuter").sendSuggestCommand(player.getPlayer());

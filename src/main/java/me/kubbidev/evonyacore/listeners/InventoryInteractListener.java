@@ -4,7 +4,7 @@ import me.kubbidev.evonyacore.CityFunction;
 import me.kubbidev.evonyacore.players.PlayerManager;
 import me.kubbidev.evonyacore.players.State;
 import me.kubbidev.evonyacore.menu.Menu;
-import me.kubbidev.evonyacore.players.EvonyaPlayer;
+import me.kubbidev.evonyacore.players.EPlayer;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -35,7 +35,7 @@ public class InventoryInteractListener implements Listener {
             return;
 
         final InventoryHolder holder = inventory.getHolder();
-        final EvonyaPlayer player = PlayerManager.wrapEvonyaPlayer((Player) event.getWhoClicked());
+        final EPlayer player = PlayerManager.wrapPlayer((Player) event.getWhoClicked());
 
         if (inventory.getType() == InventoryType.PLAYER) {
 

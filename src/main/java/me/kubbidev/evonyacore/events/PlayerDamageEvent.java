@@ -1,7 +1,7 @@
 package me.kubbidev.evonyacore.events;
 
 import me.kubbidev.evonyacore.game.core.GameInstance;
-import me.kubbidev.evonyacore.players.EvonyaPlayer;
+import me.kubbidev.evonyacore.players.EPlayer;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.entity.EntityDamageEvent;
@@ -14,7 +14,7 @@ public class PlayerDamageEvent extends EvonyaPlayerEvent implements Cancellable 
     private final double finalDamage;
     private boolean cancelled;
 
-    public PlayerDamageEvent(EvonyaPlayer player, EntityDamageEvent.DamageCause cause, double finalDamage, GameInstance gameInstance) {
+    public PlayerDamageEvent(EPlayer player, EntityDamageEvent.DamageCause cause, double finalDamage, GameInstance gameInstance) {
         super(player);
         this.cause = cause;
         this.finalDamage = finalDamage;

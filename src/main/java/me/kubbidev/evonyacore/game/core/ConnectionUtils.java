@@ -1,6 +1,6 @@
 package me.kubbidev.evonyacore.game.core;
 
-import me.kubbidev.evonyacore.players.EvonyaPlayer;
+import me.kubbidev.evonyacore.players.EPlayer;
 import me.kubbidev.evonyacore.players.Rank;
 import me.kubbidev.evonyacore.players.State;
 import me.kubbidev.evonyacore.utils.Item;
@@ -21,7 +21,7 @@ public class ConnectionUtils {
      * public games methods and private for host
      *
      */
-    public void connect(EvonyaPlayer player) {
+    public void connect(EPlayer player) {
         switch (gameInstance.getGameState()) {
             case STARTING:
             case WAITING:
@@ -34,7 +34,7 @@ public class ConnectionUtils {
         }
     }
 
-    public void setPlayerArena(EvonyaPlayer player) {
+    public void setPlayerArena(EPlayer player) {
 
         player.teleport(gameInstance.getSpawnLocation());
         player.refresh();
@@ -64,7 +64,7 @@ public class ConnectionUtils {
                 "&a" + player.getUsername() + "&f a rejoint la partie &8[&e" + gameInstance.getPlayers().size() + "&7/&e" + gameInstance.getSlots() + "&8]"));
     }
 
-    public void setPlayerSpectateArena(EvonyaPlayer player) {
+    public void setPlayerSpectateArena(EPlayer player) {
         player.teleport(gameInstance.getSpawnLocation());
         player.refresh();
         player.setGameMode(GameMode.SPECTATOR);

@@ -3,7 +3,7 @@ package me.kubbidev.evonyacore.game.core;
 import me.kubbidev.evonyacore.EvonyaPlugin;
 import me.kubbidev.evonyacore.game.GameManager;
 import me.kubbidev.evonyacore.game.Tracker;
-import me.kubbidev.evonyacore.players.EvonyaPlayer;
+import me.kubbidev.evonyacore.players.EPlayer;
 import me.kubbidev.evonyacore.utils.Fireworks;
 import org.bukkit.Bukkit;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -32,7 +32,7 @@ public class EndHandler {
                 return;
 
             if (size == 1) {
-                final EvonyaPlayer winner = gameInstance.getPlayers().get(0);
+                final EPlayer winner = gameInstance.getPlayers().get(0);
                 final Tracker winnerTracker = gameInstance.getTracker(winner);
 
                 this.sendWinMessage(winnerTracker);

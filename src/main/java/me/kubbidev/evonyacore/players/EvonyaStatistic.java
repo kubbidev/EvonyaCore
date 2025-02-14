@@ -16,7 +16,7 @@ public class EvonyaStatistic {
     private double dmgReceived;
     private long timePlayed;
 
-    public EvonyaStatistic(EvonyaPlayer player) {
+    public EvonyaStatistic(EPlayer player) {
         this.uuid = player.getUniqueId();
         this.username = player.getUsername();
 

@@ -2,7 +2,7 @@ package me.kubbidev.evonyacore.listeners;
 
 import me.kubbidev.evonyacore.CityFunction;
 import me.kubbidev.evonyacore.LobbyFunction;
-import me.kubbidev.evonyacore.players.EvonyaPlayer;
+import me.kubbidev.evonyacore.players.EPlayer;
 import me.kubbidev.evonyacore.players.PlayerManager;
 import org.bukkit.World;
 import org.bukkit.block.Block;
@@ -27,7 +27,7 @@ public class BlockListener implements Listener {
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event) {
         final Block block = event.getBlock();
-        final EvonyaPlayer player = PlayerManager.wrapEvonyaPlayer(event.getPlayer());
+        final EPlayer player = PlayerManager.wrapPlayer(event.getPlayer());
 
         if (player.getWorld().equals(cityFunction.getCity()))
             return;
@@ -47,7 +47,7 @@ public class BlockListener implements Listener {
     @EventHandler
     public void onBlockPlace(BlockPlaceEvent event) {
         final Block block = event.getBlock();
-        final EvonyaPlayer player = PlayerManager.wrapEvonyaPlayer(event.getPlayer());
+        final EPlayer player = PlayerManager.wrapPlayer(event.getPlayer());
 
         if (player.getWorld().equals(cityFunction.getCity()))
             return;

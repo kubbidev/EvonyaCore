@@ -4,7 +4,7 @@ import me.kubbidev.evonyacore.events.PlayerDisconnectEvent;
 import me.kubbidev.evonyacore.game.Tracker;
 import me.kubbidev.evonyacore.game.core.GameInstance;
 import me.kubbidev.evonyacore.game.core.GameState;
-import me.kubbidev.evonyacore.players.EvonyaPlayer;
+import me.kubbidev.evonyacore.players.EPlayer;
 import me.kubbidev.evonyacore.players.State;
 import me.kubbidev.evonyacore.queue.QueueSystem;
 import me.kubbidev.evonyacore.storage.EvonyaPlayerProvider;
@@ -33,7 +33,7 @@ public class QuitListener implements Listener {
         event.setQuitMessage(null);
 
         final Player bukkitPlayer = event.getPlayer();
-        final EvonyaPlayer player = new EvonyaPlayerProvider(bukkitPlayer).saveAccount();
+        final EPlayer player = new EvonyaPlayerProvider(bukkitPlayer).saveAccount();
 
         new EvonyaStatisticProvider(player).saveStatistic();
 
@@ -51,8 +51,8 @@ public class QuitListener implements Listener {
     @EventHandler
     public void onDemonSlayerQuit(PlayerDisconnectEvent event) {
         final GameInstance gameInstance = event.getGameInstance();
-        final EvonyaPlayer player = event.getPlayer();
-        final List<EvonyaPlayer> worldPlayers = gameInstance.getWorldPlayers().stream().filter(p -> !p.equals(player)).collect(Collectors.toList());
+        final EPlayer player = event.getPlayer();
+        final List<EPlayer> worldPlayers = gameInstance.getWorldPlayers().stream().filter(p -> !p.equals(player)).collect(Collectors.toList());
 
         gameInstance.getPlayers().remove(player);
         if (gameInstance.getGameState() == GameState.WAITING || gameInstance.getGameState() == GameState.STARTING)

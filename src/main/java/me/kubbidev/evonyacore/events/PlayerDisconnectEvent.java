@@ -1,7 +1,7 @@
 package me.kubbidev.evonyacore.events;
 
 import me.kubbidev.evonyacore.game.core.GameInstance;
-import me.kubbidev.evonyacore.players.EvonyaPlayer;
+import me.kubbidev.evonyacore.players.EPlayer;
 import org.bukkit.event.HandlerList;
 
 public class PlayerDisconnectEvent extends EvonyaPlayerEvent {
@@ -9,7 +9,7 @@ public class PlayerDisconnectEvent extends EvonyaPlayerEvent {
     private static final HandlerList HANDLERS = new HandlerList();
     private final GameInstance gameInstance;
 
-    public PlayerDisconnectEvent(EvonyaPlayer player, GameInstance gameInstance) {
+    public PlayerDisconnectEvent(EPlayer player, GameInstance gameInstance) {
         super(player);
         this.gameInstance = gameInstance;
     }

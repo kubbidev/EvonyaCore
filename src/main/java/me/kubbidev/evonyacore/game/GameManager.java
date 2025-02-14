@@ -5,7 +5,7 @@ import me.kubbidev.evonyacore.LobbyFunction;
 import me.kubbidev.evonyacore.exceptions.GameDoesNotExistException;
 import me.kubbidev.evonyacore.game.core.GameInstance;
 import me.kubbidev.evonyacore.game.core.GameState;
-import me.kubbidev.evonyacore.players.EvonyaPlayer;
+import me.kubbidev.evonyacore.players.EPlayer;
 import me.kubbidev.evonyacore.queue.QueueSystem;
 import me.kubbidev.evonyacore.utils.WorldManager;
 import org.bukkit.Bukkit;
@@ -33,7 +33,7 @@ public class GameManager {
         return GAME_INSTANCES;
     }
 
-    public static synchronized GameInstance getGameInstance(EvonyaPlayer player) {
+    public static synchronized GameInstance getGameInstance(EPlayer player) {
         try {
             return getGameInstance(player.getWorld().getUID());
         } catch (GameDoesNotExistException e) {
@@ -57,11 +57,11 @@ public class GameManager {
         throw new GameDoesNotExistException(String.valueOf(uuid));
     }
 
-    public static boolean hasGameInstance(EvonyaPlayer player) {
+    public static boolean hasGameInstance(EPlayer player) {
         return GAME_INSTANCES.stream().anyMatch(gameInstance -> gameInstance.getWorldPlayers().contains(player));
     }
 
-    public void createGameInstance(EvonyaPlayer player) {
+    public void createGameInstance(EPlayer player) {
         final World world = WorldManager.createNewWorld(gameIndex);
         final GameInstance gameInstance = new GameInstance(world, player);
 

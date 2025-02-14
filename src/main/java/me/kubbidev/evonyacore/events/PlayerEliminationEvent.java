@@ -1,7 +1,7 @@
 package me.kubbidev.evonyacore.events;
 
 import me.kubbidev.evonyacore.game.core.GameInstance;
-import me.kubbidev.evonyacore.players.EvonyaPlayer;
+import me.kubbidev.evonyacore.players.EPlayer;
 import org.bukkit.Location;
 import org.bukkit.entity.Item;
 import org.bukkit.event.HandlerList;
@@ -15,7 +15,7 @@ public class PlayerEliminationEvent extends EvonyaPlayerEvent {
     private final Location location;
     private final GameInstance gameInstance;
 
-    public PlayerEliminationEvent(EvonyaPlayer player, List<Item> drops, Location location, GameInstance gameInstance) {
+    public PlayerEliminationEvent(EPlayer player, List<Item> drops, Location location, GameInstance gameInstance) {
         super(player);
         this.drops = drops;
         this.location = location;

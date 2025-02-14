@@ -1,7 +1,7 @@
 package me.kubbidev.evonyacore.queue;
 
 import me.kubbidev.evonyacore.game.core.GameInstance;
-import me.kubbidev.evonyacore.players.EvonyaPlayer;
+import me.kubbidev.evonyacore.players.EPlayer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,7 @@ import java.util.UUID;
 public class Queue {
 
     private final GameInstance gameInstance;
-    private final List<EvonyaPlayer> players;
+    private final List<EPlayer> players;
 
     private final UUID uniqueId;
 
@@ -25,7 +25,7 @@ public class Queue {
         return gameInstance;
     }
 
-    public List<EvonyaPlayer> getPlayers() {
+    public List<EPlayer> getPlayers() {
         return players;
     }
 
@@ -33,15 +33,15 @@ public class Queue {
         return uniqueId;
     }
 
-    public void addPlayer(EvonyaPlayer player) {
+    public void addPlayer(EPlayer player) {
         this.players.add(player);
     }
 
-    public void removePlayer(EvonyaPlayer player) {
+    public void removePlayer(EPlayer player) {
         this.players.remove(player);
     }
 
-    public boolean containsPlayer(EvonyaPlayer player) {
+    public boolean containsPlayer(EPlayer player) {
         return this.players.contains(player);
     }
 

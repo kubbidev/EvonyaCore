@@ -3,7 +3,7 @@ package me.kubbidev.evonyacore.threads;
 import me.kubbidev.evonyacore.EvonyaPlugin;
 import me.kubbidev.evonyacore.game.Tracker;
 import me.kubbidev.evonyacore.game.core.GameInstance;
-import me.kubbidev.evonyacore.players.EvonyaPlayer;
+import me.kubbidev.evonyacore.players.EPlayer;
 import me.kubbidev.evonyacore.scoreboard.FastBoard;
 import me.kubbidev.evonyacore.scoreboard.ScoreBoardLayout;
 import me.kubbidev.evonyacore.scoreboard.ScoreBoardManager;
@@ -20,7 +20,7 @@ public class UpdateScoreBoardThread implements Runnable {
     private final ScoreBoardManager scoreBoardManager;
     private final ScoreBoardLayout scoreBoardLayout;
     private final FastBoard fastBoard;
-    private final EvonyaPlayer player;
+    private final EPlayer player;
 
     private ScoreBoardTypes scoreBoardTypes;
 
@@ -82,7 +82,7 @@ public class UpdateScoreBoardThread implements Runnable {
 
         scoreBoardManager.getFastBoards().forEach(fastBoard -> {
 
-            final EvonyaPlayer player = fastBoard.getPlayer();
+            final EPlayer player = fastBoard.getPlayer();
             //
             // LOBBY AND CITY PART.
             //
