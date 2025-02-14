@@ -119,7 +119,7 @@ public class GameRolePanel extends PaginatedMenu {
         }
     }
 
-    private Map<String, String> rolesd = new HashMap<>();
+    private final Map<String, String> rolesd = new HashMap<>();
 
     private int getTimes(List<Role> activeRoles, Role role) {
         return (int) activeRoles.stream().filter(roles -> roles.equals(role)).count();

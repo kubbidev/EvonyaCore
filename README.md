@@ -21,7 +21,7 @@ EvonyaCore uses Gradle to handle dependencies & building.
 
 #### Requirements
 
-* Java 21 JDK or newer
+* Java 8 JDK or newer
 * Git
 
 #### Compiling from source
