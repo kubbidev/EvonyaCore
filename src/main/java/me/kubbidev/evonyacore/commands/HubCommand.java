@@ -11,6 +11,8 @@ public final class HubCommand {
     public static void register(EvonyaPlugin plugin) {
         LobbyFunction function = plugin.getLobbyFunction();
         Commands.create()
+                .assertPermission("evonyacore.hub")
+                .description("Teleport you back to the server hub")
                 .assertPlayer()
                 .handler(context -> function.lobbyEnter(PlayerManager.wrapEvonyaPlayer(context.sender())))
                 .register("hub", "lobby", "spawn");

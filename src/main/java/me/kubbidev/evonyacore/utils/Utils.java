@@ -1,77 +1,27 @@
 package me.kubbidev.evonyacore.utils;
 
-import org.bukkit.event.Cancellable;
+import me.kubbidev.nexuspowered.time.DurationFormatter;
 
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Field;
-import java.util.ArrayList;
+import java.time.Duration;
+import java.util.Arrays;
 import java.util.Collection;
-import java.util.List;
+import java.util.stream.Collectors;
 
 public class Utils {
 
-    public static String convertBooleanToString(boolean b) {
-        return b ? "&aActivé" : "&cDésactivé";
+    public static String formatBoolean(boolean bool) {
+        return bool ? "&aActivé" : "&cDésactivé";
     }
 
-    public static String convertListToString(Collection<String> list) {
-        final StringBuilder sb = new StringBuilder();
-        int i = 0;
-        for (String strings : list) {
-            String s;
-            if (i > 0) {
-                s = "\n" + Color.translate(strings);
-            } else s = Color.translate(strings);
-            sb.append(s);
+    public static String formatStringList(Collection<String> list) {
+        return list.stream().collect(Collectors.joining("\n", "", ""));
+    }
 
-            i++;
-        }
-        return sb.toString();
+    public static String formatStringArray(String[] arr) {
+        return Arrays.stream(arr).collect(Collectors.joining("\n", "", ""));
     }
 
     public static String getFormattedTime(long time) {
-        int d = (int) time / 86400;
-        time -= (d * 86400);
-
-        int h = (int) time / 3600;
-        time -= (h * 3600);
-
-        int m = (int) time / 60;
-        time -= (m * 60);
-
-        if (d == 0) {
-            if (h == 0) {
-                if (m == 0)
-                    return time + "s";
-                return m + "m" + time + "s";
-            }
-            return h + "h" + m + "m" + time + "s";
-        }
-        return d + "d" + h + "h" + m + "m" + time + "s";
-    }
-
-    public static List<Field> getAnnotatedFields(Class<?> c, Class<? extends Annotation> annotation) {
-        List<Field> fields = new ArrayList<>();
-        for (Field field : c.getFields()) {
-            if (field.isAnnotationPresent(annotation)) {
-                field.setAccessible(true);
-                fields.add(field);
-            }
-        }
-        for (Field field : c.getDeclaredFields()) {
-            if (field.isAnnotationPresent(annotation)) {
-                field.setAccessible(true);
-                fields.add(field);
-            }
-        }
-        return fields;
-    }
-
-    public static boolean isCancelled(Cancellable event, Cancellable subEvent) {
-        if (subEvent.isCancelled()) {
-            event.setCancelled(true);
-            return true;
-        }
-        return false;
+        return DurationFormatter.CONCISE_LOW_ACCURACY.format(Duration.ofSeconds(time));
     }
 }

@@ -13,7 +13,6 @@ import me.kubbidev.evonyacore.players.EvonyaPlayer;
 import me.kubbidev.evonyacore.players.PlayerManager;
 import me.kubbidev.evonyacore.players.State;
 import me.kubbidev.evonyacore.utils.EvonyaSounds;
-import me.kubbidev.evonyacore.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -77,8 +76,10 @@ public class DamageListener implements Listener {
         final Location location = player.getLocation();
 
         Bukkit.getPluginManager().callEvent(e);
-        if (Utils.isCancelled(event, e))
+        if (e.isCancelled()) {
+            event.setCancelled(true);
             return;
+        }
 
         if (statistic) {
             player.getEvonyaStatistic().addDmgReceived(damage);
@@ -128,8 +129,10 @@ public class DamageListener implements Listener {
                 final PlayerDamageEvent e = new PlayerDamageEvent(player, cause, damage, gameInstance);
 
                 Bukkit.getPluginManager().callEvent(e);
-                if (Utils.isCancelled(event, e))
+                if (e.isCancelled()) {
+                    event.setCancelled(true);
                     return;
+                }
 
                 if (player.getHealth() <= damage) {
                     event.setDamage(0);

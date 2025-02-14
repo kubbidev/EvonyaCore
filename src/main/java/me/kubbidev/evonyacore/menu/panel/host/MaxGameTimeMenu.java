@@ -69,19 +69,19 @@ public class MaxGameTimeMenu extends Menu {
 
         inventory.setItem(29, new Item(Material.EYE_OF_ENDER)
                 .setName("&8┃&6 Partie ouverte")
-                .setLore(Collections.singletonList("  &8•&r " + Utils.convertBooleanToString(gameInstance.isOpen())))
+                .setLore(Collections.singletonList("  &8•&r " + Utils.formatBoolean(gameInstance.isOpen())))
                 .parseItem());
         inventory.setItem(30, new Item(Material.SIGN)
                 .setName("&8┃&6 Statistiques")
-                .setLore(Collections.singletonList("  &8•&r " + Utils.convertBooleanToString(gameInstance.isStatistics())))
+                .setLore(Collections.singletonList("  &8•&r " + Utils.formatBoolean(gameInstance.isStatistics())))
                 .parseItem());
         inventory.setItem(31, new Item(Material.FEATHER)
                 .setName("&8┃&6 Spectateurs")
-                .setLore(Collections.singletonList("  &8•&r " + Utils.convertBooleanToString(gameInstance.isSpectate())))
+                .setLore(Collections.singletonList("  &8•&r " + Utils.formatBoolean(gameInstance.isSpectate())))
                 .parseItem());
         inventory.setItem(32, new Item(Material.NAME_TAG)
                 .setName("&8┃&6 Prefix des équipes")
-                .setLore(Collections.singletonList("  &8•&r " + Utils.convertBooleanToString(gameInstance.isTeamPrefix())))
+                .setLore(Collections.singletonList("  &8•&r " + Utils.formatBoolean(gameInstance.isTeamPrefix())))
                 .parseItem());
 
 
@@ -152,28 +152,28 @@ public class MaxGameTimeMenu extends Menu {
         switch (material) {
             case EYE_OF_ENDER:
                 bool = !gameInstance.isOpen();
-                message = Utils.convertBooleanToString(bool);
+                message = Utils.formatBoolean(bool);
 
                 player.sendMessage(EvonyaPlugin.PREFIX + "Partie ouverte &8» " + message + "&f.");
                 gameInstance.setOpen(bool);
                 break;
             case SIGN:
                 bool = !gameInstance.isStatistics();
-                message = Utils.convertBooleanToString(bool);
+                message = Utils.formatBoolean(bool);
 
                 player.sendMessage(EvonyaPlugin.PREFIX + "Statistiques &8» " + message + "&f.");
                 gameInstance.setStatistics(bool);
                 break;
             case FEATHER:
                 bool = !gameInstance.isSpectate();
-                message = Utils.convertBooleanToString(bool);
+                message = Utils.formatBoolean(bool);
 
                 player.sendMessage(EvonyaPlugin.PREFIX + "Spectateurs &8» " + message + "&f.");
                 gameInstance.setSpectate(bool);
                 break;
             case NAME_TAG:
                 bool = !gameInstance.isTeamPrefix();
-                message = Utils.convertBooleanToString(bool);
+                message = Utils.formatBoolean(bool);
 
                 player.sendMessage(EvonyaPlugin.PREFIX + "Prefix des équipes &8» " + message + "&f.");
                 gameInstance.setTeamPrefix(bool);

@@ -14,6 +14,19 @@ public class HelpCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String string, String[] args) {
 
+        Object[] e = new Object[4];
+        e[0] = "discord";
+        e[1] = "https://discord.gg/";
+        e[2] = "username";
+        e[3] = "kubbidev";
+
+        for (int i = 0; (i + 1) < e.length; i += 2) {
+            Object o = e[i];
+            Object a = e[i + 1];
+            assert o != null : "o";
+            assert a != null : "a";
+        }
+
         if(!(sender instanceof Player)) {
             EvonyaPlugin.LOGGER.warning("Only players can type this command!");
             return true;

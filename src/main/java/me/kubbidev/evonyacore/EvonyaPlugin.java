@@ -108,12 +108,12 @@ public final class EvonyaPlugin extends ExtendedJavaPlugin {
     private void initCommands() {
         DiscordCommand.register(this);
         HubCommand.register(this);
+        MessageCommand.register(this);
+        ReplyCommand.register(this);
         getCommand("help").setExecutor(new HelpCommand());
         getCommand("join").setExecutor(new JoinCommand(queueSystem));
         getCommand("quit").setExecutor(new QuitCommand(queueSystem));
         getCommand("lag").setExecutor(new LagCommand());
-        getCommand("msg").setExecutor(new MessageCommand());
-        getCommand("r").setExecutor(new ReplyCommand());
         getCommand("stats").setExecutor(new StatsCommand(this));
         getCommand("pack").setExecutor(new PackCommand(this));
 

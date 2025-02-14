@@ -8,7 +8,9 @@ public final class DiscordCommand {
 
     public static void register(EvonyaPlugin plugin) {
         Commands.create()
-                .handler(context -> context.reply(EvonyaPlugin.prefixed("Rejoins notre &cdiscord&f : &6" + EvonyaPlugin.DISCORD)))
+                .assertPermission("evonyacore.discord")
+                .description("See the Discord server invitation link")
+                .handler(context -> context.reply("&7[&6!&7] &eDiscord link: &b" + EvonyaPlugin.DISCORD))
                 .register("discord");
     }
 }

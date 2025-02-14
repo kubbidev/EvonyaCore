@@ -2,6 +2,7 @@ package me.kubbidev.evonyacore.scoreboard;
 
 import me.kubbidev.evonyacore.EvonyaPlugin;
 import me.kubbidev.evonyacore.utils.Utils;
+import me.kubbidev.nexuspowered.util.Text;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,10 +22,9 @@ public class ScoreBoardLayout {
     private final String headerPlaying;
     private final String footer;
 
-    public ScoreBoardLayout()
-    {
-        this.titleLobby = Color.translate("&c&lEVONYA&r");
-        this.titlePlaying = Color.translate("&cdemonslayer-%gameId%");
+    public ScoreBoardLayout() {
+        this.titleLobby = Text.colorize("&c&lEVONYA&r");
+        this.titlePlaying = Text.colorize("&cdemonslayer-%gameId%");
 
         this.lobby = getUpsideDownLines(Arrays.asList(
                 "",
@@ -66,7 +66,7 @@ public class ScoreBoardLayout {
                 "",
                 "%ip%"
         ));
-        this.headerLobby = Utils.convertListToString(Arrays.asList(
+        this.headerLobby = Utils.formatStringList(Arrays.asList(
                 "",
                 "&8» &c&lEVONYA &8«",
                 "&fevonya.eu",
@@ -74,7 +74,7 @@ public class ScoreBoardLayout {
                 "Ping: &a%ping%&f   Joueurs: &a%onlinePlayers%",
                 ""
         ));
-        this.headerPlaying = Utils.convertListToString(Arrays.asList(
+        this.headerPlaying = Utils.formatStringList(Arrays.asList(
                 "",
                 "&8» &c&lEVONYA &8«",
                 "&fevonya.eu",
@@ -84,7 +84,7 @@ public class ScoreBoardLayout {
                 "%scenario%",
                 ""
         ));
-        this.footer = Utils.convertListToString(Arrays.asList(
+        this.footer = Utils.formatStringList(Arrays.asList(
                 "",
                 " Besoin d'aide ? Contacte un %modPrefix% ",
                 "&8➥&c /discord",

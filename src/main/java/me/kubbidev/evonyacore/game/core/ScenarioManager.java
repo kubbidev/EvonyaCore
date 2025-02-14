@@ -8,8 +8,10 @@ import me.kubbidev.evonyacore.game.core.scenario.ScenarioListener;
 import me.kubbidev.evonyacore.game.core.scenario.Settings;
 import me.kubbidev.evonyacore.utils.Utils;
 import org.bukkit.Bukkit;
+import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.util.*;
 
@@ -99,7 +101,7 @@ public class ScenarioManager {
     }
 
     private void loadScenarioOptions(ScenarioListener listener) throws IllegalAccessException {
-        final List<Field> optionFields = Utils.getAnnotatedFields(listener.getClass(), Option.class);
+        final List<Field> optionFields = getAnnotatedFields(listener.getClass(), Option.class);
         if (optionFields.isEmpty())
             return;
         for (Field field : optionFields) {
@@ -109,6 +111,31 @@ public class ScenarioManager {
 
             field.set(listener, value);
         }
+    }
+
+    public static List<Field> getAnnotatedFields(Class<?> c, Class<? extends Annotation> annotation) {
+        List<Field> fields = new ArrayList<>();
+        for (Field field : c.getFields()) {
+            if (field.isAnnotationPresent(annotation)) {
+                field.setAccessible(true);
+                fields.add(field);
+            }
+        }
+        for (Field field : c.getDeclaredFields()) {
+            if (field.isAnnotationPresent(annotation)) {
+                field.setAccessible(true);
+                fields.add(field);
+            }
+        }
+        return fields;
+    }
+
+    public static boolean isCancelled(Cancellable event, Cancellable subEvent) {
+        if (subEvent.isCancelled()) {
+            event.setCancelled(true);
+            return true;
+        }
+        return false;
     }
 
     public Optional<Scenario> getScenarioByKey(String key) {

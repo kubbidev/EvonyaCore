@@ -46,8 +46,11 @@ dependencies {
 
     // optional dependencies
     compileOnly("org.jetbrains:annotations:26.0.2")
-    compileOnly("com.comphenix.protocol:ProtocolLib:5.3.0")
+
+    // required dependencies
     compileOnly("me.kubbidev:nexuspowered:1.0")
+    compileOnly("net.luckperms:api:5.4")
+    compileOnly("com.comphenix.protocol:ProtocolLib:5.3.0")
 
     // temporary
     implementation("net.wesjd:anvilgui:1.10.4-SNAPSHOT")
